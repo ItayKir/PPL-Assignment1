@@ -47,15 +47,10 @@ const getDiscountedProductAveragePrice = (inventory: Product[]): number => {
 
 ```ts
 const getDiscountedProductAveragePriceFP = (inventory: Product[]): number =>{
-  const discontinued_products = inventory.filter((product) => product.discounted==true);
+  const discounted_products = inventory.filter((product) => product.discounted);
 
-  return (discontinued_products.length ==0) ? 0 : discontinued_products.reduce((sum,curr) => sum + curr,0,discontinued_products.map((product) => product.price/discontinued_products.length))
+  return (discounted_products.length ==0) ? 0 : discounted_products.map((product) => product.price/discounted_products.length).reduce((sum,curr) => sum + curr,0)
 }
-```
-```ts
-const getDiscountedProductAveragePriceFP = (inventory: Product[]): number =>
-
-  reduce((sum,curr) => sum + curr,0,map((product) => product.price/filter((product) => product.discounted==true, inventory).length, filter((product) => product.discounted==true, inventory)))
 ```
 
 
