@@ -74,9 +74,9 @@ Guidelines:
 - Use generics where possible.
 - Avoid using `any`.
 
-1. [3 points] `(x, y) => x.some(y)`
-2. [3 points] `x => x.map(y => y * 2)`
-3. [3 points] `(x, y) => x.filter(y)`
-4. [3 points] `x => x.reduce((acc, cur) => acc + cur, 0)`
-5. [3 points] `(x, y) => x ? y[0] : y[1]`
-6. [3 points] `(f,g) => x => f(g(x+1))`
+1. [3 points] `(x, y) => x.some(y)` -> `<T>(x: T[] ,y: (i: T) => boolean) => boolean`
+2. [3 points] `x => x.map(y => y * 2)` -> `x: number[] => number[]`
+3. [3 points] `(x, y) => x.filter(y)` -> `<T>(x: T[], y: (i: T) => boolean) => T[]`
+4. [3 points] `x => x.reduce((acc, cur) => acc + cur, 0)` -> `(x: number[])  => number`
+5. [3 points] `(x, y) => x ? y[0] : y[1]` -> `<T>(x: boolean, y: T[]) => T`
+6. [3 points] `(f,g) => x => f(g(x+1))` -> `<T, Z>(f: (i: T) => Z, g: (i: number) => T) => (x: number) => Z`
