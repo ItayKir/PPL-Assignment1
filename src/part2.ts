@@ -6,7 +6,7 @@ const stringToArray = R.split("");
 const vowels: string[] = ['a', 'e', 'i', 'o', 'u'];
 export const countVowels: (s: string) => number = R.pipe(
     stringToArray,
-    R.filter((letter: string) => vowels.some(i => i===letter)),
+    R.filter((letter: string) => vowels.some(i => i===letter.toLowerCase())),
     R.length
 );;
 
