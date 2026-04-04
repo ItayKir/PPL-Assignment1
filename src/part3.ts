@@ -9,8 +9,8 @@ const findOrThrow = <T>(pred: (x: T) => boolean, a: T[]): T => {
 }
 
 export const findResult = <T>(pred: (x: T) => boolean, a: T[]): Result<T> =>{
-    const result = a.find(pred);
-    return result !== undefined ? makeOk(result) : makeFailure("No element found.");
+    const index = a.findIndex(pred);
+    return index !== -1 ? makeOk(a[index]) : makeFailure("No element found.");
 }
 
 /* Client code */
