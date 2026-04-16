@@ -40,18 +40,9 @@ const getDiscountedProductAveragePrice = (inventory: Product[]): number => {
   return discountedPriceSum / discountedProductsCount;
 };
 ```
-  //1. filter only on discounted
-  //2. sum all 
-  //3. count items
-  //4. return sum/count
 
-```ts
-const getDiscountedProductAveragePriceFP = (inventory: Product[]): number =>{
-  const discounted_products = inventory.filter((product) => product.discounted);
 
-  return (discounted_products.length ==0) ? 0 : discounted_products.map((product) => product.price/discounted_products.length).reduce((sum,curr) => sum + curr,0)
-}
-```
+
 
 
 
@@ -63,6 +54,16 @@ Write the new function under the name `getDiscountedProductAveragePriceFP`.
 **Important**: the new function should have the same signature.
 
 **Note**: there are no tests for this question, and it will not be executed. The task here is to write the code in a functional way.
+
+**Answer**:
+```ts
+const getDiscountedProductAveragePriceFP = (inventory: Product[]): number =>{
+  const discounted_products = inventory.filter((product) => product.discounted);
+
+  return (discounted_products.length ==0) ? 0 : discounted_products.map((product) => product.price/discounted_products.length).reduce((sum,curr) => sum + curr,0)
+}
+```
+
 
 ### [18 points] Question 1.3
 

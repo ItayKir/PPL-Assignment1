@@ -1,15 +1,61 @@
+; Signature: last-item(lst)
+; Type: List(any) -> any
+; Purpose: Retrives the last item in the list
+; Pre-conditions: List is not empty
+; Tests: (last-item '(1 2 3)) -> 3, (last-item '("x" "q" "c")) -> "c"
 (define last-item
   (λ (lst)
-    'todo))
+    (if(eq? (cdr lst) `())
+      (car lst)
+      (last-item (cdr lst))
+    )
+  )
+)
 
+; Signature: remove-last-item(lst)
+; Type: List(T) -> List(T)
+; Purpose: Removes the last item in the list
+; Pre-conditions: List is not empty
+; Tests: (remove-last-item '("x" "q" "c")) -> `("x" "q")
 (define remove-last-item
   (λ (lst)
-    'todo))
+    (if (eq? (cdr lst) `())
+      `()
+      (cons (car lst) (remove-last-item (cdr lst)))
+    ))
+)
 
+; Signature: rotate-nth(lst, n)
+; Type: List(T) -> List(T)
+; Purpose: Rotates list n times to the right
+; Pre-conditions: List is not empty, n is a non-negative number
+; Tests: (rotate-nth '(1 2 3) 1) => (3 1 2)
 (define rotate-nth
   (λ (lst n)
-   'todo))
+    (if (> n 0) 
+        (rotate-nth (cons (last-item lst) (remove-last-item lst)) (- n 1) ) 
+        lst 
+    )
+  )
+)
 
+
+; Signature: deep-reverse(lst)
+; Type: List(T) -> List(T)
+; Purpose: gets a nested list and returns a list with all elements reversed at every level of nesting
+; Pre-conditions: Get a list
+; Tests: (deep-reverse '(1 2 3)) => (3 2 1), (deep-reverse '(a b c d e f g)) => '(g f e d c b a)
 (define deep-reverse
-  (λ (l)
-    'todo))
+  (λ (lst)
+    (if (list? lst) 
+      (if (eq? lst '())
+        '()
+        (if (eq? (cdr lst) '())
+          (cons (deep-reverse(car lst)) '())
+          (cons (deep-reverse (last-item lst)) (deep-reverse(remove-last-item lst) ) )
+        )
+      )
+      lst
+    )
+  )
+)
